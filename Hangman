@@ -1,0 +1,79 @@
+import random
+arts=["""+---+
+  |   |
+      |
+      |
+      |
+      |
+=========""","""+---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========""","""+---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========""","""+---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========""","""+---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========""","""+---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========""","""+---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+========="""]
+words=["cat","dog","horse","tiger","lion","fox","deer","zebra","camel","rabbit"]
+print(arts[0])
+guessed_words=[]
+random_word=random.choice(words)
+Trails=6
+display=["_"]*(len(random_word))
+one=print(" ".join(display))
+while "_" in display and Trails>0:
+  guessed=input("Please Guess the letter\n").lower()
+  if guessed in guessed_words:
+    print("You have guessed this letter before, please try again.")
+    print(f"You have {Trails} Trails ")
+    continue
+  guessed_words.append(guessed)
+  if guessed in random_word:
+    for y in range(len(random_word)):
+      if random_word[y] == guessed:
+        display[y]=guessed
+        print(" ".join(display))
+        print(f" Correct Choice,  {Trails} Trails ")
+
+  else:
+    Trails-=1
+    print(f"wrong, You have {Trails} Trails")
+    
+    index=len(arts)-Trails     
+    print(arts[index])
+  if Trails==0:
+    print(f"Game Over {random_word}")
+    print(arts[-1])
+  if not ("_") in display and Trails!=0:
+    print(f" Congratulations, The Word was {random_word} 😍🎉🎉")
+    break
+
+   
